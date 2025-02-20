@@ -22,21 +22,31 @@ class Book:
         return f'Книга "{self.name}"'
 
 
+# TODO написать класс Library
 class Library:
-    def __init__(self, books: dict):
+    def __init__(self, books=(), id_=0):
         self.books = books
-        self.index = None
-        self.get_next_book_id()
+        self.id_ = id_
 
-    def get_next_book_id(self, index: int):
-        empty_list = []
-        if self.books is empty_list:
-            index = 1
+    def get_next_book_id(self):
+        if self.books == ():
+            return 1
         else:
-            index += 1
+            book_indexes = []
+            for i in BOOKS_DATABASE:
+                book_indexes.append(i['id'])
+            return max(book_indexes) + 1
+
+    @staticmethod
+    def get_index_by_book_id(id_):
+        for i in BOOKS_DATABASE:
+            if i['id'] == id_:
+                return i['id'] - 1
+            else:
+                raise ValueError("Книги с запрашиваемым id не существует")
 
 
-if __name__ == '__task__':
+if __name__ == '__main__':
     empty_library = Library()  # инициализируем пустую библиотеку
     print(empty_library.get_next_book_id())  # проверяем следующий id для пустой библиотеки
 
